@@ -7,17 +7,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NotificationController {
 
+    /**Field injection*/
+    @Autowired
     private MessageInterface email;
 
+    /** Constructor Injection*/
 //    @Autowired
 //    public NotificationController(MessageInterface email) {
 //        this.email = email;
 //    }
 
-    @Autowired
-    public void setEmail(EmailService email) {
-        this.email = email;
-    }
+    /** Setter injection*/
+//    @Autowired
+//    public void setEmail(EmailService email) {
+//        this.email = email;
+//    }
 
     @GetMapping("/send-email")
     public String sendEmail() {
