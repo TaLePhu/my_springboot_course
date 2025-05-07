@@ -9,8 +9,13 @@ public class NotificationController {
 
     private MessageInterface email;
 
+//    @Autowired
+//    public NotificationController(MessageInterface email) {
+//        this.email = email;
+//    }
+
     @Autowired
-    public NotificationController(MessageInterface email) {
+    public void setEmail(EmailService email) {
         this.email = email;
     }
 
