@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BANG CUU CHUONG</title>
+</head>
+<body>
+    <h1>bang cuu chuong - <span th:text="${number}">0</span></h1>
+
+    <table>
+        <tr th:each="item : ${#numbers.sequence(1, 10)}">
+            <td th:text="${number}"></td>
+            <td>*</td>
+            <td th:text="${item}"></td>
+            <td>=</td>
+            <td th:text="${number * item}"></td>
+        </tr>
+    </table>
+</body>
+</html>
