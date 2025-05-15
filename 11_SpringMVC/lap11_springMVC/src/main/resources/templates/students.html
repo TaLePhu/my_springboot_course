@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quan ly sinh vien</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h3>Danh Sach Sinh Vien</h3>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="bg-dark">
+            <tr>
+                <td>ID</td>
+                <td>ho</td>
+                <td>ten</td>
+                <td>email</td>
+                <td>chuc nang</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.id}"/>
+                <td th:text="${student.firstName}"/>
+                <td th:text="${student.lastName}"/>
+                <td th:text="${student.email}"/>
+                <td>
+                    <button class="btn btn-primary">update</button>
+                    <button class="btn btn-danger">delete</button>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</body>
+</html>
