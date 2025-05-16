@@ -30,51 +30,30 @@ public class StudentController {
         return "students";
     }
 
-//    @GetMapping
-//    public List<Student> getAllStudents() {
-//        return studentService.getAllStudents();
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<Void> addStudent(@RequestBody Student student) {
-//        student.setId(0);
-//        studentService.addStudent(student);
-//        return ResponseEntity.status(HttpStatus.CREATED).build();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Student> getStudentById(@PathVariable int id) {
-//        Student student = studentService.getStudentById(id);
-//        if (student == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(student);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student student) {
-//        Student studentExisting = studentService.getStudentById(id);
-//        if(studentExisting != null) {
-//            studentExisting.setFirstName(student.getFirstName());
-//            studentExisting.setLastName(student.getLastName());
-//            studentExisting.setEmail(student.getEmail());
-//            studentService.updateStudent(studentExisting);
-//            return ResponseEntity.ok().build();
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteStudentById(@PathVariable int id) {
-//        Student student = studentService.getStudentById(id);
-//
-//        if(student !=null) {
-//            studentService.deleteStudentById(id);
-//            return ResponseEntity.ok().build();
-//        }else {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//    }
+    @GetMapping("/form")
+    public String getStudentForm(Model model) {
+        Student student = new Student();
+        model.addAttribute("student", student);
+        return "students-form";
+    }
+
+    @PostMapping("/save")
+    public String saveOrUpdateStudent(@ModelAttribute("student") Student student) {
+        studentService.updateStudent(student);
+        return "redirect:/students/list";
+    }
+
+    @GetMapping("/update")
+    public String updateStudent(@RequestParam("id") Integer id, Model model) {
+        Student student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+        return "students-form";
+    }
+
+    @GetMapping("/delete")
+    public String deleteStudent(@RequestParam("id") Integer id) {
+        studentService.deleteStudentById(id);
+        return "redirect:/students/list";
+    }
+
 }
