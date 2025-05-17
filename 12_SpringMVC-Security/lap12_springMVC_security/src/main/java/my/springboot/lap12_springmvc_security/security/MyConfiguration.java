@@ -24,13 +24,22 @@ public class MyConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
-                configure -> configure.anyRequest().authenticated()
+                configure -> configure
+                        .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/staff/**").hasAnyRole("STAFF", "ADMIN")
+                        .requestMatchers("/user/**").hasAnyRole("USER", "STAFF", "ADMIN")
         ).formLogin(
                 form->form.loginPage("/login")
-                        .loginProcessingUrl("authenticateTheUser")
-                        .defaultSuccessUrl("/home", true) // Trang mặc định sau khi login thành công
+                        .loginProcessingUrl("/authenticateTheUser")
+                        .defaultSuccessUrl("/user", true) // Trang mặc định sau khi login thành công
                         .permitAll()
+        ).logout(
+                logout -> logout.permitAll()
+        ).exceptionHandling(
+            configure -> configure.accessDeniedPage("/show-page403")
         );
+
         return http.build();
     }
 }

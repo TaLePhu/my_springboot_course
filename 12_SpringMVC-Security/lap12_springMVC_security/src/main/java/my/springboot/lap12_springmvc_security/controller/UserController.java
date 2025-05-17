@@ -3,17 +3,14 @@ package my.springboot.lap12_springmvc_security.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class LoginController {
+public class UserController {
 
-    @GetMapping("/login")
-    public String showLoginPage(Model model) {
-        return "login";
+    @GetMapping("/user")
+    public String homePage(Model model) {
+        return "user/home";
     }
 
-    @GetMapping("/show-page403")
-    public String showPage403() {
-        return "403";
-    }
 }

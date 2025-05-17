@@ -51,9 +51,6 @@
 <div class="form-container text-center">
     <h3 class="mb-4">Sign in</h3>
     <form th:action="@{/authenticateTheUser}" method="post">
-        <div th:if="${param.error}">
-            <span style="color:red">đăng nhập không thành công</span>
-        </div>
         <div class="mb-3 text-start">
             <input type="text" name="username" class="form-control" placeholder="User name">
         </div>
